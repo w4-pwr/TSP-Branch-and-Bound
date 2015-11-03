@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Comparator;
-
 /**
  * Created by Rafal on 2015-10-31.
  */
@@ -35,13 +33,13 @@ public class Edge {
     public int getWeight() {
         return weight;
     }
-
-    public static class AscendingWeightComparator implements Comparator<Edge> {
-        @Override
-        public int compare(Edge first, Edge second) {
-            return Integer.compare(second.weight, first.weight);
-        }
-    }
+//
+//    public static class AscendingWeightComparator implements Comparator<Edge> {
+//        @Override
+//        public int compare(Edge first, Edge second) {
+//            return Integer.compare(second.weight, first.weight);
+//        }
+//    }
 
     @Override
     public boolean equals(Object obj) {
