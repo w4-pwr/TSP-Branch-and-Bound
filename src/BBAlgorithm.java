@@ -12,7 +12,8 @@ public class BBAlgorithm {
     private Matrix matrix;
     private int upperBound; //upper bound
     private int numberOfVerticles;
-
+    private NodeList queue;
+    private Node bestSolution;
     public BBAlgorithm() {
     }
 
@@ -24,19 +25,15 @@ public class BBAlgorithm {
     public void invoke() {
         readDataFromFile();
         numberOfVerticles = matrix.getEdgeCount();
-         Node firstTry = initFirstNode();
-        CalculationService.getInstance().countLowerBoundForNode(matrix, firstTry);
-        upperBound = firstTry.lowerBound;
-
-
-        NodeList queue = new NodeList(firstTry);
+        addFirstNodeToQueue();
 
         while (!queue.isEmpty()) {
             //zdejmij z kolejki zadanie
-            Node currentNode = queue.popBestAndRemoveWorseThan(firstTry.lowerBound);
+            Node currentNode = queue.popBestAndRemoveWorseThan(upperBound);
             //utworz podzadania
             for (int i = 0; i < numberOfVerticles; i++) {
                 if (!currentNode.checkIfVisitedPoint(i)) {
+                    //tutaj jest zle, bo jak dojde do liscia to mam sprawdzic,czy jego lowerbound jest mniejszy od mojego upperbounda
                     Node newSubProblem = new Node(currentNode, i);
                     CalculationService.getInstance().countLowerBoundForNode(matrix, newSubProblem);
                     if (newSubProblem.lowerBound < upperBound) {
@@ -49,6 +46,13 @@ public class BBAlgorithm {
 
         }
         System.out.println(upperBound);
+    }
+
+    private void addFirstNodeToQueue() {
+        Node firstTry = initFirstNode();
+        CalculationService.getInstance().countLowerBoundForNode(matrix, firstTry);
+        upperBound = firstTry.lowerBound;
+        queue = new NodeList(firstTry);
     }
 
     private Node initFirstNode() {
@@ -78,7 +82,6 @@ public class BBAlgorithm {
                 {246, 745, 472, 237, 528, 364, 332, 349, 202, 685, 542, 157, 289, 426, 483, 0, 336},
                 {121, 518, 142, 84, 297, 35, 29, 36, 236, 390, 238, 301, 55, 96, 153, 336, 0}
         };
-
         matrix = new Matrix(m);
     }
 
