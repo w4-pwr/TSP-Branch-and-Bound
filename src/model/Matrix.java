@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by Rafal on 2015-10-31.
  */
-public class Matrix {
+public  class Matrix {
 
     private int[][] matrix;
     private boolean symmetric;
@@ -35,6 +35,9 @@ public class Matrix {
         }
     }
 
+    public int getWeight(int from, int to){
+        return matrix[from][to];
+    }
     public void remove(final Edge edge) {
         matrix[edge.vertex1][edge.vertex2] = Edge.NO_EXIST;
         if(symmetric) {

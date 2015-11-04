@@ -14,8 +14,8 @@ public class NodeList {
     public Node popBestAndRemoveWorseThan(float upperBound) {
         ListElement best = null;
         ListElement current = first;
-        while(current != null) {
-            if (upperBound <= current.node.lowerBound) {
+        while (current != null) {
+            if (upperBound < current.node.lowerBound) {
                 remove(current);
             } else if (best == null || current.node.lowerBound < best.node.lowerBound) {
                 best = current;
@@ -55,6 +55,7 @@ public class NodeList {
             first = newListElement;
         }
     }
+
 
     public static class ListElement {
 

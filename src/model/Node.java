@@ -5,15 +5,26 @@ package model;
  */
 public class Node {
 
-    public int[][] original;
-    public int[][] reduced;
-    public Edge[] solution;
-    public float lowerBound;
-    public boolean leftChild;
+    public int[] order;
+    public int lowerBound;
+    public int numberOfNodes;
 
-    public Node(final int[][] matrix) {
-        this.original = matrix;
-        leftChild = false;
-        lowerBound = 0;
+
+    public Node(int size) {
+        this.numberOfNodes = 1;
+        order = new int[size];
+    }
+
+    public Node(Node currentNode,int nextPoint) {
+        this.order = currentNode.order;
+        order[numberOfNodes] = nextPoint;
+        numberOfNodes= currentNode.numberOfNodes+1;
+    }
+
+    public boolean checkIfVisitedPoint(int point){
+        for(int i = 0 ;i<numberOfNodes;i++)
+            if(order[i]==point)
+                return true;
+        return false;
     }
 }
