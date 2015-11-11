@@ -6,22 +6,26 @@ import java.util.List;
 /**
  * Created by Rafal on 2015-10-31.
  */
-public  class Matrix {
+public class Matrix {
 
     private int[][] matrix;
     private boolean symmetric;
+    private int edgeCount;
 
     public Matrix(final int size, boolean symmetric) {
         this.symmetric = symmetric;
+        edgeCount = size;
         matrix = new int[size][size];
     }
 
     public Matrix(int[][] matrix) {
+        edgeCount = matrix.length;
+        //System.out.println("Matrix.lenght  "+ edgeCount);
         this.matrix = matrix;
     }
 
     public int getEdgeCount() {
-        return matrix.length;
+        return edgeCount;
     }
 
     public boolean isSymmetric() {
@@ -30,17 +34,19 @@ public  class Matrix {
 
     public void add(final Edge edge) {
         matrix[edge.vertex1][edge.vertex2] = edge.weight;
-        if(symmetric) {
+        if (symmetric) {
             matrix[edge.vertex2][edge.vertex1] = edge.weight;
         }
     }
 
-    public int getWeight(int from, int to){
+    public int getWeight(int from, int to) {
         return matrix[from][to];
     }
+
+
     public void remove(final Edge edge) {
         matrix[edge.vertex1][edge.vertex2] = Edge.NO_EXIST;
-        if(symmetric) {
+        if (symmetric) {
             matrix[edge.vertex2][edge.vertex1] = Edge.NO_EXIST;
         }
         edge.invalidate();
@@ -57,9 +63,9 @@ public  class Matrix {
     public List<Edge> getEdgesFor(int vertex) {
         List<Edge> edges = new LinkedList<>();
         int[] adjacentEdges = matrix[vertex];
-        for(int i = 0; i < adjacentEdges.length; i++) {
+        for (int i = 0; i < adjacentEdges.length; i++) {
             Edge tmpEdge = new Edge(vertex, i, adjacentEdges[i]);
-            if(tmpEdge.isExist()) {
+            if (tmpEdge.isExist()) {
                 edges.add(tmpEdge);
             }
         }
@@ -71,6 +77,15 @@ public  class Matrix {
     }
 
     public int getSize() {
-        return matrix.length;
+        return edgeCount;
+    }
+
+    public void printMatrix() {
+        for (int i = 0; i < getSize(); i++) {
+            for (int j = 0; j < getSize(); j++) {
+                System.out.println(matrix[i][j]+"  ");
+            }
+            System.out.println("\n ");
+        }
     }
 }

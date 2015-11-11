@@ -15,39 +15,40 @@ public class CalculationService {
 
     Node node;
     Matrix matrix;
-    int [][] copyMatrix;
+    int[][] copyMatrix;
     int numberOfVerticles;
 
     public static CalculationService instance = null;
     private List<Integer> leftOversEstimateList;
 
-    protected CalculationService(){
+    protected CalculationService() {
 
     }
+
     public static CalculationService getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new CalculationService();
         }
         return instance;
     }
 
-    public void countLowerBoundForNode(Matrix matrix,Node node) {
+    public void countLowerBoundForNode(Matrix matrix, Node node) {
         this.node = node;
         this.matrix = matrix;
         numberOfVerticles = matrix.getEdgeCount();
-        countCurrentLowerBound();
-        estimateOtherConnection();
+        countCurrentPathWeight();
+        estimateLowerBound();
     }
 
-    private void countCurrentLowerBound( ) {
+    private void countCurrentPathWeight() {
         int currentLowerBound = 0;
-        for (int i = 0; i < node.numberOfNodes; i++) {
-            currentLowerBound += matrix.getWeight(node.order[i], node.order[i + 1]);
+        for (int i = 0; i < node.numberOfNodes - 1; i++) {
+            currentLowerBound += matrix.getWeight(node.order[i], node.order[(i + 1)]);
         }
-        node.lowerBound+=currentLowerBound;
+        node.lowerBound += currentLowerBound;
     }
 
-    private void estimateOtherConnection() {
+    private void estimateLowerBound() {
         copyMatrix = cloneArray(matrix.getMatrix());
         scratchDiagonal();
         scratchVisitedVerticles();
@@ -59,8 +60,13 @@ public class CalculationService {
         leftOversEstimateList = new ArrayList<>();
         copyWeightFromMatrixToList();
         Collections.sort(leftOversEstimateList);
-        for (int i = 0; i < leftOver; i++) {
-            node.lowerBound += leftOversEstimateList.get(i);
+        try {
+            for (int i = 0; i < leftOver; i++) {
+                node.lowerBound += leftOversEstimateList.get(i);
+            }
+
+        } catch (IndexOutOfBoundsException exc) {
+            System.err.println("Za malo mozliwych elementow do oszacowania");
         }
     }
 
@@ -94,10 +100,9 @@ public class CalculationService {
         int length = src.length;
         int[][] target = new int[length][length];
         for (int i = 0; i < length; i++) {
-            for (int j = 0; j < length; j++){
-                target[i][j] = src[i][j];
-            }
+            System.arraycopy(src[i], 0, target[i], 0, length);
         }
         return target;
     }
+
 }
