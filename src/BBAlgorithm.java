@@ -5,6 +5,7 @@ import model.NodeList;
 
 /**
  * Created by Rafal on 2015-10-31.
+ *
  */
 public class BBAlgorithm {
     private final int INF = Integer.MAX_VALUE;
@@ -111,7 +112,7 @@ public class BBAlgorithm {
 //        };
         //matrix = new Matrix(m);
         MatrixGenerator matrixGenerator = new MatrixGenerator();
-        int m[][] = matrixGenerator.generate(14);
+        int m[][] = matrixGenerator.generate(18);
         matrix = new Matrix(m);
         matrix.printMatrix();
     }
