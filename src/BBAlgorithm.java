@@ -5,13 +5,12 @@ import model.NodeList;
 
 /**
  * Created by Rafal on 2015-10-31.
- *
  */
 public class BBAlgorithm {
     private final int INF = Integer.MAX_VALUE;
     private String inputFiletName;
     private Matrix matrix;
-    private int upperBound; //upper bound
+    private int upperBound;
     private int numberOfVerticles;
     private NodeList queue;
     private Node bestSolution;
@@ -51,6 +50,7 @@ public class BBAlgorithm {
         if (currentNode.lowerBound < upperBound) {
             upperBound = currentNode.lowerBound;
             bestSolution = currentNode;
+           // bestSolution.printOrder();
         }
     }
 
@@ -103,15 +103,17 @@ public class BBAlgorithm {
 //        };
 //        matrix = new Matrix(m);
 
-        int m[][] = {
-                {0, 92, 89, 17},
-                {92, 0, 24, 95},
-                {89, 24, 0, 67},
-                {17, 95, 67, 0}
-        };
+//        int m[][] = {
+//                {0, 92, 89, 17},
+//                {92, 0, 24, 95},
+//                {89, 24, 0, 67},
+//                {17, 95, 67, 0}
+//        };
+        //matrix = new Matrix(m);
+        MatrixGenerator matrixGenerator = new MatrixGenerator();
+        int m[][] = matrixGenerator.generate(14);
         matrix = new Matrix(m);
-
-
+        matrix.printMatrix();
     }
 
 

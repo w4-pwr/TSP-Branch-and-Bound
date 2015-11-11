@@ -83,7 +83,7 @@ public class Matrix {
     public void printMatrix() {
         for (int i = 0; i < getSize(); i++) {
             for (int j = 0; j < getSize(); j++) {
-                System.out.println(matrix[i][j]+"  ");
+                System.out.print(matrix[i][j]+"  ");
             }
             System.out.println("\n ");
         }

@@ -43,7 +43,7 @@ public class Node {
 
     public void printOrder(){
         for (int i = 0; i < order.length; i++) {
-            System.out.println(order[i]);
+            System.out.print (order[i] + "  ");
         }
     }
 }
