@@ -7,13 +7,15 @@ public class Main {
         Writer fileOutput = null;
         try {
             fileOutput = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream("filename.txt"), "utf-8"));
+                    new FileOutputStream("wynik2.txt"), "utf-8"));
 
-            for (int i = 3; i < 15; i++) {
-                long timeSum = testAlgorithm10Times(i);
-                timeSum/=10;
-                fileOutput.write(String.format(" %d wierzcholkow, czas %d \n", i, timeSum));
-            }
+//            for (int i = 3; i < 14; i++) {
+//                long timeSum = testAlgorithm1Time(i);
+//
+//                fileOutput.write(String.format(" %d wierzcholkow, czas %d \n", i, timeSum));
+//            }
+            long timeSum = testAlgorithm1Time(19);
+            System.out.println(String.format(" %d wierzcholkow, czas %d \n", 14, timeSum));
         } catch (IOException e) {
             System.err.println("Nie znaleziono pliku");
         } finally {
@@ -24,15 +26,22 @@ public class Main {
         }
     }
 
-    private static long testAlgorithm10Times(int i) {
-        long timeSum = 0;
-        for (int j = 0; j < 10; j++) {
+    private static long testAlgorithm1Time(int i) {
+
             long start = System.currentTimeMillis();
             BBAlgorithm bbAlgorithm = new BBAlgorithm(i);
             bbAlgorithm.invoke();
             long stop = System.currentTimeMillis();
-            timeSum += (stop - start);
+        return  (stop - start);
+
+
+    }
+
+    private static long testAlgorithm10Times(int i) {
+        long timeSum = 0;
+        for (int j = 0; j < 10; j++) {
+            timeSum += testAlgorithm1Time(i);
         }
-        return timeSum;
+        return timeSum/10;
     }
 }

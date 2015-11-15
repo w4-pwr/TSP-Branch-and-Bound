@@ -5,7 +5,6 @@ import model.NodeList;
 
 /**
  * Created by Rafal on 2015-10-31.
- *
  */
 public class BBAlgorithm {
     private final int INF = Integer.MAX_VALUE;
@@ -20,7 +19,7 @@ public class BBAlgorithm {
         MatrixGenerator matrixGenerator = new MatrixGenerator();
         int m[][] = matrixGenerator.generate(size);
         matrix = new Matrix(m);
-       // matrix.printMatrix();
+        // matrix.printMatrix();
     }
 
     public BBAlgorithm() {
@@ -58,7 +57,7 @@ public class BBAlgorithm {
         if (currentNode.lowerBound < upperBound) {
             upperBound = currentNode.lowerBound;
             bestSolution = currentNode;
-           // bestSolution.printOrder();
+            // bestSolution.printOrder();
         }
     }
 

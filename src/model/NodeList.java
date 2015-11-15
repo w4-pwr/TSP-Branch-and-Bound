@@ -2,6 +2,7 @@ package model;
 
 /**
  * Created by Rafal on 2015-11-01.
+ *
  */
 public class NodeList {
 
@@ -11,7 +12,7 @@ public class NodeList {
         this.first = new ListElement(first);
     }
 
-    public Node popBestAndRemoveWorseThan(float upperBound) {
+    public Node popBestAndRemoveWorseThan(int upperBound) {
         ListElement best = null;
         ListElement current = first;
         while (current != null) {
