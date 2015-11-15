@@ -24,6 +24,14 @@ public class BBAlgorithm {
         // matrix.printMatrix();
     }
 
+
+    public void generateMatrix(int size){
+        MatrixGenerator matrixGenerator = new MatrixGenerator();
+        int m[][] = matrixGenerator.generate(size);
+        matrix = new Matrix(m);
+        // matrix.printMatrix();
+    }
+
     public BBAlgorithm() {
     }
 
