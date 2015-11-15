@@ -42,6 +42,7 @@ public class Node {
     }
 
     public void printOrder(){
+        System.out.println("kolejnosc odwiedzanych miejscowosci:");
         for (int i = 0; i < order.length; i++) {
             System.out.print (order[i] + "  ");
         }

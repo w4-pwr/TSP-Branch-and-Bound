@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Created by Rafal on 2015-11-04.
+ *
  */
 public class CalculationService {
     private final int INF = Integer.MAX_VALUE;

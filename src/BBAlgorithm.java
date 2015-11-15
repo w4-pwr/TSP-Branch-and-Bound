@@ -16,6 +16,13 @@ public class BBAlgorithm {
     private NodeList queue;
     private Node bestSolution;
 
+    public BBAlgorithm(int size) {
+        MatrixGenerator matrixGenerator = new MatrixGenerator();
+        int m[][] = matrixGenerator.generate(size);
+        matrix = new Matrix(m);
+       // matrix.printMatrix();
+    }
+
     public BBAlgorithm() {
     }
 
@@ -25,7 +32,7 @@ public class BBAlgorithm {
 
 
     public void invoke() {
-        readDataFromFile();
+        //readDataFromFile();
         numberOfVerticles = matrix.getEdgeCount();
         addFirstNodeToQueue();
 
@@ -38,7 +45,7 @@ public class BBAlgorithm {
                 createSubproblems(currentNode);
             }
         }
-        System.out.println(upperBound);
+        //System.out.println("upper bound " + upperBound);
         bestSolution.printOrder();
 
     }
@@ -111,10 +118,7 @@ public class BBAlgorithm {
 //                {17, 95, 67, 0}
 //        };
         //matrix = new Matrix(m);
-        MatrixGenerator matrixGenerator = new MatrixGenerator();
-        int m[][] = matrixGenerator.generate(18);
-        matrix = new Matrix(m);
-        matrix.printMatrix();
+
     }
 
 
