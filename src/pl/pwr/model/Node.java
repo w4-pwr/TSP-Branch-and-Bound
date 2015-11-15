@@ -1,4 +1,6 @@
-package model;
+package pl.pwr.model;
+
+import pl.pwr.Main;
 
 /**
  * Created by Rafal on 2015-10-31.
@@ -42,9 +44,12 @@ public class Node {
     }
 
     public void printOrder(){
-        System.out.println("kolejnosc odwiedzanych miejscowosci:");
+        if(Main.DEBUG) {
+            System.out.println("kolejnosc odwiedzanych miejscowosci:");
+
         for (int i = 0; i < order.length; i++) {
             System.out.print (order[i] + "  ");
+        }
         }
     }
 }

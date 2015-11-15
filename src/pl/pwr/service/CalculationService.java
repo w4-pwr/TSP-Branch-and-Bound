@@ -1,7 +1,8 @@
-package calculation;
+package pl.pwr.service;
 
-import model.Matrix;
-import model.Node;
+import pl.pwr.Main;
+import pl.pwr.model.Matrix;
+import pl.pwr.model.Node;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,7 +68,9 @@ public class CalculationService {
             }
 
         } catch (IndexOutOfBoundsException exc) {
-            System.err.println("Za malo mozliwych elementow do oszacowania");
+            if(Main.DEBUG) {
+                System.err.println("Za malo mozliwych elementow do oszacowania");
+            }
         }
     }
 

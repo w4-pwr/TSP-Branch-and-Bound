@@ -1,7 +1,9 @@
-import calculation.CalculationService;
-import model.Matrix;
-import model.Node;
-import model.NodeList;
+package pl.pwr;
+
+import pl.pwr.service.CalculationService;
+import pl.pwr.model.Matrix;
+import pl.pwr.model.Node;
+import pl.pwr.model.NodeList;
 
 /**
  * Created by Rafal on 2015-10-31.

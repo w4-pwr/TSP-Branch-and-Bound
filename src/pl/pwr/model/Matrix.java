@@ -1,4 +1,4 @@
-package model;
+package pl.pwr.model;
 
 import java.util.LinkedList;
 import java.util.List;

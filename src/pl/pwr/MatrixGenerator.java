@@ -1,3 +1,5 @@
+package pl.pwr;
+
 import java.util.Random;
 
 /**
